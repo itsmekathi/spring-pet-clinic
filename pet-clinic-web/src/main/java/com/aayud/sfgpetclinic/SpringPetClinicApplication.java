@@ -1,4 +1,4 @@
-package com.aayud.springpetclinic;
+package com.aayud.sfgpetclinic;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
