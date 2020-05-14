@@ -14,7 +14,7 @@
 	</parent>
 	<groupId>com.aayud</groupId>
 	<artifactId>spring-pet-clinic</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>spring-pet-clinic</name>
 	<description>Demo project for Spring Pet Clinic</description>
 
@@ -23,7 +23,7 @@
 	</properties>
 	<scm>
 		<developerConnection>scm:git:https://github.com/itsmekathi/spring-pet-clinic.git/</developerConnection>
-	  <tag>spring-pet-clinic-0.0.1</tag>
+	  <tag>HEAD</tag>
   </scm>
 	<build>
 		<plugins>
