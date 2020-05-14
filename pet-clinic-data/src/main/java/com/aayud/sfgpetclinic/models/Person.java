@@ -1,5 +1,5 @@
 package com.aayud.sfgpetclinic.models;
 
-public class Person {
+public class Person extends  BaseEntity{
 
 }
