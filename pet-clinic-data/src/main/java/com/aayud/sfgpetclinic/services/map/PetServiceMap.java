@@ -1,16 +1,17 @@
 package com.aayud.sfgpetclinic.services.map;
 
 import com.aayud.sfgpetclinic.models.Pet;
-import com.aayud.sfgpetclinic.services.CrudService;
+import com.aayud.sfgpetclinic.services.PetService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class PetServiceMap extends AbstractMapService<Pet, Long> implements CrudService<Pet, Long> {
+public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
+
     @Override
     public Set<Pet> findAll() {
-        return  super.findAll();
+        return super.findAll();
     }
 
     @Override
@@ -25,11 +26,11 @@ public class PetServiceMap extends AbstractMapService<Pet, Long> implements Crud
 
     @Override
     public Pet save(Pet object) {
-        return super.save( object);
+        return super.save(object);
     }
 
     @Override
     public Pet findById(Long id) {
-        return  super.findById(id);
+        return super.findById(id);
     }
 }
