@@ -27,7 +27,6 @@ public class SpecialityMapService extends AbstractMapService<Speciality, Long> i
     public Speciality save(Speciality object) {
         return  super.save(object);
     }
-
     @Override
     public Speciality findById(Long id) {
         return super.findById(id);
