@@ -1,6 +1,14 @@
 package com.aayud.sfgpetclinic.models;
 
+import jdk.jfr.Enabled;
+
+import javax.persistence.Column;
+import javax.persistence.Table;
+
+@Enabled
+@Table(name = "types")
 public class PetType extends  BaseEntity {
+	@Column(name = "name")
 	private String name;
 
 	public String getName() {
