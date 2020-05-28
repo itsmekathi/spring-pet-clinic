@@ -1,10 +1,7 @@
 package com.aayud.sfgpetclinic.bootstrap;
 
 import com.aayud.sfgpetclinic.models.*;
-import com.aayud.sfgpetclinic.services.OwnerService;
-import com.aayud.sfgpetclinic.services.PetTypeService;
-import com.aayud.sfgpetclinic.services.SpecialityService;
-import com.aayud.sfgpetclinic.services.VetService;
+import com.aayud.sfgpetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -15,14 +12,18 @@ public class DataLoader implements CommandLineRunner {
 
     private  final OwnerService ownerService;
     private final VetService vetService;
+    private final PetService petService;
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
+    private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetService petService, PetTypeService petTypeService, SpecialityService specialityService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
+        this.petService = petService;
         this.petTypeService = petTypeService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -59,28 +60,37 @@ public class DataLoader implements CommandLineRunner {
         Owner owner1 = new Owner();
         owner1.setFirstName("Kathiravan");
         owner1.setLastName("Balasubramanian");
-        ownerService.save(owner1);
+        Owner savedKathiOwner = ownerService.save(owner1);
 
-        Pet kathiPet = new Pet();
-        kathiPet.setPetType(savedDogPetType);
-        kathiPet.setOwner(owner1);
-        kathiPet.setBirthDate(LocalDate.now());
-        kathiPet.setName("JhuJu");
-        owner1.getPets().add(kathiPet);
+        Pet jhuJhu = new Pet();
+        jhuJhu.setPetType(savedDogPetType);
+        jhuJhu.setOwner(owner1);
+        jhuJhu.setBirthDate(LocalDate.now());
+        jhuJhu.setName("JhuJu");
+        owner1.getPets().add(jhuJhu);
+        jhuJhu.setOwner(savedKathiOwner);
+        Pet savedJhuJhu = petService.save(jhuJhu);
 
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Thiruveni");
         owner2.setLastName("Balasubramanian");
-        ownerService.save(owner2);
+        Owner savedVeniOwner = ownerService.save(owner2);
 
         Pet veniPet = new Pet();
         veniPet.setPetType(savedCatPetType);
         veniPet.setBirthDate(LocalDate.now());
         veniPet.setName("Tom");
-        veniPet.setOwner(owner2);
-        owner2.getPets().add(veniPet);
+        veniPet.setOwner(savedVeniOwner);
+        savedVeniOwner.getPets().add(veniPet);
+        Pet savedVeniPet = petService.save(veniPet);
 
+        Visit jhujhuVisit = new Visit();
+        jhujhuVisit.setDescription("JhuJhu not having food");
+        jhujhuVisit.setDate(LocalDate.now());
+        jhujhuVisit.setPet(jhuJhu);
+
+        visitService.save(jhujhuVisit);
 
         System.out.println("Loaded Owners....");
 
@@ -95,6 +105,8 @@ public class DataLoader implements CommandLineRunner {
         vet2.setLastName("Smith");
         vet2.getSpecialities().add(savedSurgery);
         vetService.save(vet2);
+
+
 
         System.out.println("Loaded Vets.....");
     }
